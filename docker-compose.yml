@@ -1,0 +1,28 @@
+version: '3'
+services:
+  cac_api:
+    build: cac_api
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      AUTH_KEY: 35fcf4ca7b20c1db08f691b46bc884482bcb38723c27343f9a1c4eefc0288997
+      ETECC_USERNAME: root
+      ETECC_URL: jdbc:mysql://db-caribbean-cloud2023.c7nuykfkx3fi.us-west-1.rds.amazonaws.com:3306/CaribbeanCloud_Schema?serverTimezone=UTC
+      ETECC_PASS: Caribbean123
+    restart: always
+    depends_on:
+      db-caribbean-cloud2023.c7nuykfkx3fi.us-west-1.rds.amazonaws.com:
+        condition: service_healthy
+  db-caribbean-cloud2023.c7nuykfkx3fi.us-west-1.rds.amazonaws.com:
+    image: mysql:8.3.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Caribbean123
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 10
