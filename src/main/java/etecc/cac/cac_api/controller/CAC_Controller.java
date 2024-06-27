@@ -27,7 +27,7 @@ public class CAC_Controller {
 
     @PostMapping("/saveAll")
     public ResponseEntity saveRecord(@RequestBody List<OwnerRecordModel> recordModel) {
-        Logger.getLogger(getClass().getName()).log(Level.INFO, recordModel.toString());
+        
         return service.saveAllRecords(recordModel);
     }
 }
