@@ -1,8 +1,6 @@
-version: '3'
 services:
   cac_api:
     build: cac_api
-    mem_limit: 512m
     ports:
       - "8080:8080"
     environment:
@@ -20,9 +18,10 @@ services:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: Caribbean123
+      MYSQL_ROOT_USER: root
     restart: always
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "ping", "-h", "localhost"]
       interval: 1m30s
       timeout: 30s
       retries: 10
