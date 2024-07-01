@@ -16,6 +16,6 @@ public class CAC_Owner_Controller {
 
     @GetMapping("/owners")
     public ResponseEntity getOwners() {
-        return ResponseEntity.ok(cacOwnerService.getOwners());
+        return cacOwnerService.getOwners();
     }
 }
