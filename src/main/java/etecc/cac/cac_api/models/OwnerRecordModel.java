@@ -1,16 +1,46 @@
 package etecc.cac.cac_api.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 @Entity
 @Table(name = "cac_access_data")
-@Data
 public class OwnerRecordModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Override
+    public String toString() {
+        return "OwnerRecordModel{" +
+                "id=" + id +
+                ", last_query='" + last_query + '\'' +
+                ", propertyID='" + propertyID + '\'' +
+                ", buildingName='" + buildingName + '\'' +
+                ", type='" + type + '\'' +
+                ", qtyPeople=" + qtyPeople +
+                '}';
+    }
+
+    public String getLast_query() {
+        return last_query;
+    }
+
+    public String getPropertyID() {
+        return propertyID;
+    }
+
+    public String getBuildingName() {
+        return buildingName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getQtyPeople() {
+        return qtyPeople;
+    }
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String last_query;
@@ -26,4 +56,5 @@ public class OwnerRecordModel {
 
     @Column(name = "qtyPeople", columnDefinition = "INT")
     private int qtyPeople;
+
 }

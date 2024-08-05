@@ -2,7 +2,6 @@ package etecc.cac.cac_api.service;
 
 import etecc.cac.cac_api.models.OwnerRecordModel;
 import etecc.cac.cac_api.repository.ICAC_Repository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,12 +25,14 @@ public class CAC_Service {
                     throw new RuntimeException(e);
                 }
                 if (value == null) return ResponseEntity.badRequest().body("Invalid fields");
+
                 if (attributes.getType().equals(String.class)) {
-                    if (String.valueOf(value).isEmpty())
+                    if (String.valueOf(value).isEmpty() || String.valueOf(value).isBlank() )
                         return ResponseEntity.badRequest().body("Invalid fields");
                 }
             }
         }
+
         if (recordModel.getQtyPeople() <= 0) {
             return ResponseEntity.badRequest().body("Invalid fields");
         }
